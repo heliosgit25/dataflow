@@ -20,6 +20,8 @@ conn = psycopg2.connect(
     host="localhost",
     port="5432"
 )
+
+conn.autocommit = True
 cursor = conn.cursor()
 
 print("Consumer started...")
@@ -37,5 +39,3 @@ for message in consumer:
     event["price"],
     event_time
     ))
-
-    conn.commit()
