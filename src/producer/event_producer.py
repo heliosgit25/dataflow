@@ -21,9 +21,12 @@ def generate_event():
     }
 
 if __name__ == "__main__":
-    while True:
-        event = generate_event()
-        producer.send("ecommerce-events", event)
-        print("Sent:", event)
-        print(json.dumps(event))
-        time.sleep(5)  # Simulate a delay between events
+    try:
+        while True:
+            event = generate_event()
+            producer.send("ecommerce-events", event)
+            print("Sent:", event)
+            #print(json.dumps(event))
+            time.sleep(5)  # Simulate a delay between events
+    except KeyboardInterrupt:
+        print("\nProducer stopping...")
